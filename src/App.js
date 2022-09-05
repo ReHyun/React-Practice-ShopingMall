@@ -23,7 +23,7 @@ function App() {
           <Navbar.Brand href="#home">Shoe Shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={() => { navigate('/') }}> Home </Nav.Link>
-            <Nav.Link onClick={() => { navigate('/detail') }}>Detail</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/detail/') }}>Detail</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -32,13 +32,12 @@ function App() {
         <Route path="/" element={
           <div>
             <div className="main-bg"></div>
-
             <div className="container">
               <div className="row">
                 {
                   shoes.map(function (a, i) {
                     return (
-                      <div className="col-md-4">
+                      <div className="col-md-4" onClick={()=>{navigate('/detail/'+i)}}>
                         <img src={"https://codingapple1.github.io/shop/shoes" + (i + 1) + ".jpg"} width="80%" />
                         <h4>{shoes[i].title}</h4>
                         <p>{shoes[i].price}</p>
