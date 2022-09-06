@@ -14,7 +14,7 @@ function DetailPage(props) {
 
   useEffect(()=>{
     setTimeout(()=>{ setAlert(false)}, 2000);
-  })
+  }, [])
 
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
@@ -33,6 +33,7 @@ function DetailPage(props) {
           <p>{findShoes.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
+        <input></input>
       </div>
     </div>
   )
