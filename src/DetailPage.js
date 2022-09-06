@@ -1,28 +1,24 @@
+import { Alert } from "bootstrap";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import styled from 'styled-components';
 
 
 
-
-
 function DetailPage(props) {
 
-  let [alert, setAlert] = useState(true);
-  let [time, setTime] = useState(true);
-
+  let [text, setText] = useState('');
 
   useEffect(()=>{
-    setTimeout(()=>{ setAlert(false)}, 2000);
-  }, [])
+    if (isNaN(text) == true){
+      alert('숫자를 입력해주세요')
+    }
+  }, [text])
 
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
   return (
     <div className="container">
-      {
-        alert === true ? <Warning/> : null
-      }
       <div className="row">
         <div className="col-md-6">
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
@@ -33,7 +29,7 @@ function DetailPage(props) {
           <p>{findShoes.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
-        <input></input>
+        <input onChange={(e)=>{setText(e.target.value)}}></input>
       </div>
     </div>
   )
