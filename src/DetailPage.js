@@ -15,6 +15,8 @@ function DetailPage(props) {
     }
   }, [text])
 
+
+
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
   return (

@@ -5,16 +5,19 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { data } from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { DetailPage } from './DetailPage'
+import axios from 'axios'
+
 
 
 function App() {
 
-  let [shoes] = useState(data);
+  let [shoes, setShoes] = useState(data);
   let navigate = useNavigate();
+
 
   return (
     <div className="App">
@@ -46,6 +49,17 @@ function App() {
                   })
                 }
               </div>
+              <button onClick={()=>{
+                axios.get('https://codingapple1.github.io/shop/data2.json').then((result)=>{
+                  let arr = [...shoes];
+                  let newArr = arr.concat(result.data);
+                  setShoes(newArr);
+              })
+                .catch(()=>{
+                  console.log(' ajax 실패 ')
+                })
+
+              }}>Button</button>
             </div>
           </div>
         } />
