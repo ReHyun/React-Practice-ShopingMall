@@ -1,24 +1,24 @@
 import { Alert } from "bootstrap";
+import Nav from 'react-bootstrap/Nav';
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
 
 
 
 function DetailPage(props) {
-
   let [text, setText] = useState('');
+  let { id } = useParams();
+  let findShoes = props.shoes.find((x) => x.id == id);
+  let [tab, setTab] = useState(0);
 
-  useEffect(()=>{
-    if (isNaN(text) == true){
+  useEffect(() => {
+    if (isNaN(text) == true) {
       alert('숫자를 입력해주세요')
     }
   }, [text])
 
 
-
-  let { id } = useParams();
-  let findShoes = props.shoes.find((x) => x.id == id);
   return (
     <div className="container">
       <div className="row">
@@ -31,17 +31,42 @@ function DetailPage(props) {
           <p>{findShoes.price}</p>
           <button className="btn btn-danger">주문하기</button>
         </div>
-        <input onChange={(e)=>{setText(e.target.value)}}></input>
       </div>
+      
+      <Nav variant="tabs" defaultActiveKey="/home">
+        <Nav.Item>
+          <Nav.Link eventKey="TAB0" onClick={()=>{setTab(0)}}>TAB0</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="TAB1" onClick={()=>{setTab(1)}}>TAB1</Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link eventKey="TAB2" onClick={()=>{setTab(2)}}>TAB2</Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <TabContent tab={tab}></TabContent>
+
     </div>
   )
 }
 
-function Warning() {
-  return (
-    <div className="warning">
-      2초 내로 구매시 할인
-    </div>
-  )
+
+function TabContent({tab}){
+  if (tab == 0){
+    return(
+    <div>내용0</div> 
+    )  
+  } else if(tab == 1){
+    return(
+      <div>내용1</div>
+    )
+  } else{
+    return(
+      <div>내용2</div>
+    )
+  }
 }
+
+
+
 export { DetailPage }
