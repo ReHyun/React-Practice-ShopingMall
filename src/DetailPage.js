@@ -4,12 +4,10 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
 import { Container } from "react-bootstrap";
-import {Context1} from './App.js'
 
 
 function DetailPage(props) {
 
-  let {stock, shoes} = useContext(Context1);
 
   let [text, setText] = useState('');
   let { id } = useParams();
@@ -45,8 +43,6 @@ function DetailPage(props) {
         </div>
       </div>
 
-      {stock}
-
       <Nav variant="tabs" defaultActiveKey="/home">
         <Nav.Item>
           <Nav.Link eventKey="TAB0" onClick={()=>{setTab(0)}}>TAB0</Nav.Link>
@@ -67,7 +63,6 @@ function DetailPage(props) {
 
 function TabContent({tab}){
   let [fade, setFade] = useState('');
-  let {stock} = useContext(Context1);
 
   useEffect(()=>{
     setTimeout(()=>{setFade('end')},100);
