@@ -1,13 +1,16 @@
 import { Alert } from "bootstrap";
 import Nav from 'react-bootstrap/Nav';
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
 import { Container } from "react-bootstrap";
-
+import {Context1} from './App.js'
 
 
 function DetailPage(props) {
+
+  let {stock, shoes} = useContext(Context1);
+
   let [text, setText] = useState('');
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
@@ -41,7 +44,9 @@ function DetailPage(props) {
           <button className="btn btn-danger">주문하기</button>
         </div>
       </div>
-      
+
+      {stock}
+
       <Nav variant="tabs" defaultActiveKey="/home">
         <Nav.Item>
           <Nav.Link eventKey="TAB0" onClick={()=>{setTab(0)}}>TAB0</Nav.Link>
@@ -62,6 +67,7 @@ function DetailPage(props) {
 
 function TabContent({tab}){
   let [fade, setFade] = useState('');
+  let {stock} = useContext(Context1);
 
   useEffect(()=>{
     setTimeout(()=>{setFade('end')},100);

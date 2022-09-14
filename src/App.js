@@ -5,16 +5,24 @@ import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import { useEffect, useState } from 'react';
+import { createContext, useEffect, useState } from 'react';
 import { data } from './data.js';
 import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { DetailPage } from './DetailPage'
 import axios from 'axios'
 
+
+
+
+/** state 보관함 */
+export let Context1 = createContext()
+
+
 function App() {
 
   let [shoes, setShoes] = useState(data);
   let [count, setCount] = useState(0);
+  let [stock, setStock] = useState([10, 11, 12]);
   let navigate = useNavigate();
 
   return (
@@ -76,10 +84,14 @@ function App() {
             </div>
           </div>
         } />
-        <Route path="/detail/:id" element={<DetailPage shoes={shoes}></DetailPage>} />
+        <Route path="/detail/:id" element={
+          <Context1.Provider value={{ stock, shoes }}>
+            <DetailPage shoes={shoes}/>
+          </Context1.Provider>
+        } />
       </Routes>
 
-    </div>
+    </div >
   );
 }
 
