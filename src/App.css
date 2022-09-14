@@ -48,3 +48,19 @@
 .warning{
   background-color : magenta;
 }
+
+.start{
+  opacity : 0;
+  transform: 0;
+}
+
+.end{
+  opacity : 1;
+  transition: opacity 0.5s;
+  transform: 1;
+}
+
+.AfterAnimation{
+  opacity : 1;
+  transition: opacity 0.5s;
+}

@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
+import { Container } from "react-bootstrap";
 
 
 
@@ -11,6 +12,7 @@ function DetailPage(props) {
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
   let [tab, setTab] = useState(0);
+  let [animation, setAnimation] = useState('');
 
   useEffect(() => {
     if (isNaN(text) == true) {
@@ -18,9 +20,16 @@ function DetailPage(props) {
     }
   }, [text])
 
+  useEffect(()=>{
+    setTimeout(()=>{setAnimation('end')},100)
+    return(
+      setAnimation('')
+    )
+  }, [])
+
 
   return (
-    <div className="container">
+    <div className={`container start ${animation}`}>
       <div className="row">
         <div className="col-md-6">
           <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="100%" />
@@ -52,19 +61,20 @@ function DetailPage(props) {
 
 
 function TabContent({tab}){
-  if (tab == 0){
+  let [fade, setFade] = useState('');
+
+  useEffect(()=>{
+    setTimeout(()=>{setFade('end')},100);
     return(
-    <div>내용0</div> 
-    )  
-  } else if(tab == 1){
-    return(
-      <div>내용1</div>
+      ()=>{setFade('')}
     )
-  } else{
-    return(
-      <div>내용2</div>
-    )
-  }
+  }, [tab])
+
+  return(
+    <div className={`start ${ fade }`}>
+      {[<div>내용0</div>,<div>내용1</div>,<div>내용2</div>][tab]}
+    </div>
+  )
 }
 
 
