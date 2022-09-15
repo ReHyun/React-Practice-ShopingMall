@@ -4,6 +4,8 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
 import { Container } from "react-bootstrap";
+import { cart } from "./Store.js"
+import { data } from "./data.js"
 
 
 function DetailPage(props) {
@@ -39,7 +41,9 @@ function DetailPage(props) {
           <h4 className="pt-5">{findShoes.title}</h4>
           <p>{findShoes.content}</p>
           <p>{findShoes.price}</p>
-          <button className="btn btn-danger">주문하기</button>
+          <button className="btn btn-danger" onClick={()=>{
+            
+          }}>주문하기</button>
         </div>
       </div>
 
