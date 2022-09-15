@@ -14,13 +14,16 @@ let cart = createSlice({
   reducers : {
     IncreaseCount(state, action){
       state[action.payload].count += 1
+    },
+    AddCart(state, action){
+      state.push(action.payload)
       console.log(action.payload)
-    }
+    },
   }
 })
 
 export let {IncreaseCount} = cart.actions
-
+export let {AddCart} = cart.actions
 
 export default configureStore({
   reducer: {

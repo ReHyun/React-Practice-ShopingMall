@@ -4,19 +4,20 @@ import { useContext, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom"
 import styled from 'styled-components';
 import { Container } from "react-bootstrap";
-import { cart } from "./Store.js"
+import { cart, AddCart } from "./Store.js"
 import { data } from "./data.js"
-
+import { useDispatch, useSelector } from "react-redux";
 
 function DetailPage(props) {
-
-
+  let dispatch = useDispatch();
   let [text, setText] = useState('');
   let { id } = useParams();
   let findShoes = props.shoes.find((x) => x.id == id);
   let [tab, setTab] = useState(0);
   let [animation, setAnimation] = useState('');
+  let cart = useSelector((state)=>{ return state.cart })
 
+  
   useEffect(() => {
     if (isNaN(text) == true) {
       alert('숫자를 입력해주세요')
@@ -42,7 +43,13 @@ function DetailPage(props) {
           <p>{findShoes.content}</p>
           <p>{findShoes.price}</p>
           <button className="btn btn-danger" onClick={()=>{
+        
+            let copyCart ={
+              name : data[1].title,
+            count : 0};
             
+            
+            dispatch(AddCart(copyCart))
           }}>주문하기</button>
         </div>
       </div>
