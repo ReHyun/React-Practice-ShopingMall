@@ -33,7 +33,7 @@ function App() {
           <Navbar.Brand href="#home">Shoe Shop</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link onClick={() => { navigate('/') }}> Home </Nav.Link>
-            <Nav.Link onClick={() => { navigate('/detail/0') }}>Detail</Nav.Link>
+            <Nav.Link onClick={() => { navigate('/detail/1') }}>Detail</Nav.Link>
             <Nav.Link onClick={() => { navigate('/Cart') }}>Cart</Nav.Link>
           </Nav>
         </Container>

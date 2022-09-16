@@ -19,10 +19,13 @@ let cart = createSlice({
       state.push(action.payload)
       console.log(action.payload)
     },
+    DecreaseCount(state,action){
+      state[action.payload].count -= 1
+    }
   }
 })
 
-export let {IncreaseCount} = cart.actions
+export let {IncreaseCount, DecreaseCount} = cart.actions
 export let {AddCart} = cart.actions
 
 export default configureStore({
