@@ -12,10 +12,6 @@ function Cart() {
 
     return (
         <div>
-            <h6>{user.name}의 {user.age}장바구니</h6>
-            <button onClick={()=>{
-                dispatch(changeAge(100))
-            }}>버튼</button>
             <Table>
                 <thead>
                     <tr>
@@ -30,14 +26,14 @@ function Cart() {
                         cart.map(function (a, i) {
                             return (
                                 <tr key={i}>
-                                    <td>1</td>
+                                    <td>{cart[i].id}</td>
                                     <td>{cart[i].name}</td>
                                     <td>{cart[i].count}</td>
                                     <button onClick={()=>{
-                                        dispatch(IncreaseCount(i))
+                                        dispatch(IncreaseCount(cart[i].id))
                                     }}> + </button>
                                     <button onClick={()=>{
-                                        dispatch(DecreaseCount(i))
+                                        dispatch(DecreaseCount(cart[i].id))
                                     }}> - </button>
                                 </tr>
 
@@ -46,9 +42,6 @@ function Cart() {
                     }
                 </tbody>
             </Table>
-
-
-
 
         </div>
     )

@@ -8,6 +8,8 @@ import { cart, AddCart } from "./Store.js"
 import { data } from "./data.js"
 import { useDispatch, useSelector } from "react-redux";
 
+
+
 function DetailPage(props) {
   let dispatch = useDispatch();
   let [text, setText] = useState('');
@@ -47,7 +49,6 @@ function DetailPage(props) {
             let copyCart ={
               name : data[1].title,
             count : 0};
-            
             
             dispatch(AddCart(copyCart))
           }}>주문하기</button>

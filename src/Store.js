@@ -13,14 +13,16 @@ let cart = createSlice({
   ] ,
   reducers : {
     IncreaseCount(state, action){
-      state[action.payload].count += 1
+      let cartNum = state.findIndex((a)=>{return a.id == action.payload})
+      state[cartNum].count++
     },
     AddCart(state, action){
       state.push(action.payload)
       console.log(action.payload)
     },
     DecreaseCount(state,action){
-      state[action.payload].count -= 1
+      let cartNum = state.findIndex((a)=>{return a.id == action.payload})
+      state[cartNum].count -= 1
     }
   }
 })
