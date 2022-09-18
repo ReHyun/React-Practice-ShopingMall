@@ -15,17 +15,15 @@ import { Cart } from './Cart.js';
 
 
 
-/** state 보관함 */
-export let Context1 = createContext()
-
 
 function App() {
 
-  let obj = {name : 'kim'}
-  localStorage.setItem('data', JSON.stringify(obj))
-  let 꺼낸거 = localStorage.getItem('data')
-  
-  console.log(JSON.parse(꺼낸거).name);
+  useEffect(()=>{
+    if (localStorage.getItem('watched').length == 0){
+      localStorage.setItem('watched', JSON.stringify([]))
+    }
+  },[])
+
 
   let [shoes, setShoes] = useState(data);
   let [count, setCount] = useState(0);
@@ -54,7 +52,7 @@ function App() {
                 {
                   shoes.map(function (a, i) {
                     return (
-                      <div className="col-md-4" onClick={() => { navigate('/detail/' + i) }}>
+                      <div className="col-md-4" onClick={() => { navigate('/detail/' + i); }}>
                         <img src={"https://codingapple1.github.io/shop/shoes" + (i + 1) + ".jpg"} width="80%" />
                         <h4>{shoes[i].title}</h4>
                         <p>{shoes[i].price}</p>
