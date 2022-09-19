@@ -11,9 +11,7 @@ import { Routes, Route, Link, useNavigate, Outlet } from 'react-router-dom'
 import { DetailPage } from './DetailPage'
 import axios from 'axios'
 import { Cart } from './Cart.js';
-
-
-
+import { useQuery } from 'react-query';
 
 
 function App() {
@@ -24,11 +22,13 @@ function App() {
     }
   },[])
 
-
   let [shoes, setShoes] = useState(data);
   let [count, setCount] = useState(0);
   let [stock, setStock] = useState([10, 11, 12]);
   let navigate = useNavigate();
+
+  useQuery()
+  
 
   return (
     <div className="App">
@@ -40,6 +40,8 @@ function App() {
             <Nav.Link onClick={() => { navigate('/detail/1') }}>Detail</Nav.Link>
             <Nav.Link onClick={() => { navigate('/Cart') }}>Cart</Nav.Link>
           </Nav>
+          <Nav className="me-auto"> 안녕하세요. Mr.Kim </Nav>
+
         </Container>
       </Navbar>
 
